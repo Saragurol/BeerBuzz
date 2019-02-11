@@ -11,7 +11,7 @@ export const getStudents = (students) => ({
 
 //thunks
 export const fetchStudents = () => {
-    return async dispatch =>{
+    return async dispatch => {
         const response = await axios.get('/api/campuses')
         dispatch(getStudents(response.data))
     }
