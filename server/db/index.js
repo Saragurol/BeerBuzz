@@ -1,6 +1,8 @@
 'use strict'
 const Sequelize = require('sequelize')
 const db = require('./database')
+const Student = require('./student')
+const Campus = require('./campus')
 
 
 // The purpose of this module is to bring your Sequelize instance (`db`) together
@@ -15,8 +17,6 @@ const db = require('./database')
 // Example:
 //
 // Puppy.belongsTo(Owner)
-const Student = require('./student')
-const Campus = require('./campus')
 
 Student.belongsTo(Campus)
 Campus.hasMany(Student)

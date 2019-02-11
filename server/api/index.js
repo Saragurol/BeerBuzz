@@ -1,6 +1,9 @@
 'use strict'
 
 const router = require('express').Router()
+const {Student, Campus} = require('../db')
+// const Student = require('../db/student')
+// const Campus = require('../db/campus')
 
 // Your routes go here!
 // NOTE: Any routes that you put here are ALREADY mounted on `/api`
@@ -19,6 +22,23 @@ const router = require('express').Router()
 // middleware will generate a 404, and send it to your
 // error-handling endware!
 
+router.get('/students', async (req, res, next) => {
+  try {
+    const AllStudents = await Student.findAll()
+    res.json(AllStudents)
+  } catch (error) {
+    next(error)
+  }
+})
+router.get('/campuses', async (req, res, next) => {
+  try {
+    const AllCampuses = await Campus.findAll()
+    res.json(AllCampuses)
+  } catch (error) {
+    next(error)
+  }
+})
+
 router.use((req, res, next) => {
   const err = new Error('API route not found!')
   err.status = 404
@@ -26,4 +46,3 @@ router.use((req, res, next) => {
 })
 
 module.exports = router
-
