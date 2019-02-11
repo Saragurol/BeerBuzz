@@ -3,6 +3,7 @@ import {fetchStudents} from '../reducers/subStudentReducer'
 import {connect} from 'react-redux'
 
 export class AllStudents extends Component {
+
     componentDidMount () {
         this.props.fetchInitialStudents()
     }
@@ -12,7 +13,7 @@ export class AllStudents extends Component {
         <div>
             <ul className = "student-list" >
                 {students.map(student => <li key={student.id}>Name: {student.name}</li>)}
-            </ul>
+            </ul>      
         </div>
         )
     }
