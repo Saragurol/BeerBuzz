@@ -9,7 +9,6 @@ export class AllStudents extends Component {
     }
     render() {
         const students = this.props.students
-        console.log('STUDENTSSSSSS', students)
         return (
         <div>
             <h1>All Students</h1>
