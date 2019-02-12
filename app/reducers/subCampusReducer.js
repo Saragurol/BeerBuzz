@@ -23,18 +23,16 @@ export const fetchCampuses = () => {
     }
 }
 
-export const fetchOneCampus = (studentId) => {
+export const fetchOneCampus = (campusId) => {
     return async dispatch => {
-        const response = await axios.get(`/api/campuses/${studentId}`)
+        const response = await axios.get(`/api/campuses/${campusId}`)
         dispatch(getOneCampus(response.data))
     }
 }
 
 //initial state
 const initialState = {
-    campuses: [{id: 1, name: 'StonyBrook', imageUrl: 'http://www.ocsaccess.com/admin/clientfiles/ucsne/images/xlarge/mm%20choc.jpg', address: '10 old drive', description: 'cool school' },
-    {id: 2, name: 'Oswego', imageUrl: 'http://www.ocsaccess.com/admin/clientfiles/ucsne/images/xlarge/mm%20choc.jpg', address: '9 old drive', description: 'cool school' },
-    {id: 3, name: 'Fordham', imageUrl: 'http://www.ocsaccess.com/admin/clientfiles/ucsne/images/xlarge/mm%20choc.jpg', address: '8 old drive', description: 'cool school' }],
+    campuses: [],
     campus: {}
 }
 

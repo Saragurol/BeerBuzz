@@ -28,7 +28,7 @@ const Student = db.define('student', {
     },
     imageUrl: {
       type: Sequelize.STRING,
-      defaultValue: 'http://www.ocsaccess.com/admin/clientfiles/ucsne/images/xlarge/mm%20choc.jpg'
+      defaultValue: 'http://4.bp.blogspot.com/-3JeIxWBU7bY/UKjIt8lVpCI/AAAAAAAABx8/YM8piSOwczs/s1600/Schipperke-Puppy.jpg'
     },
     gpa: {
       type: Sequelize.DECIMAL,

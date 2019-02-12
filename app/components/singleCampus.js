@@ -1,17 +1,16 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {fetchOneCampus} from '../reducers/subStudentReducer'
+import {fetchOneCampus} from '../reducers/subCampusReducer'
 
 
 export class SingleCampus extends Component {
 
-
   async componentDidMount () {
-    const campusId = Number(this.props.match.params.campusId)
+    const campusId = Number(this.props.match.params.id)
     this.props.fetchCampus(campusId)
   }
   render () {
-    const campus = this.props.student
+    const campus = this.props.campus
     return (
       <div id="single-student">
         <div className="student row" key={campus.id}>
@@ -32,13 +31,13 @@ export class SingleCampus extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        campus: state.studentSubReducer.campus
+        campus: state.campusSubReducer.campus
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        fetchCampus: () => dispatch(fetchOneCampus())
+        fetchCampus: (campusId) => dispatch(fetchOneCampus(campusId))
     }
 }
 

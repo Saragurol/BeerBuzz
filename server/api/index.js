@@ -45,6 +45,17 @@ router.get('/students/:id', async (req, res, next) => {
   }
 })
 
+// Get the campus that the student belongs to
+router.get('/students/:id/campuses', async (req, res, next) => {
+  try {
+    const studentId = req.params.id
+    const campus = await Campus.findAll({ where: {studentId} })
+    res.json(campus)
+  } catch (error) {
+    next(error) 
+  }
+})
+
 router.get('/campuses', async (req, res, next) => {
   try {
     const allCampuses = await Campus.findAll()

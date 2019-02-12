@@ -7,7 +7,7 @@ export class SingleStudent extends Component {
 
 
   async componentDidMount () {
-    const studentId = Number(this.props.match.params.studentId)
+    const studentId = Number(this.props.match.params.id)
     this.props.fetchStudent(studentId)
   }
   render () {
@@ -37,7 +37,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-      fetchStudent: () => dispatch(fetchOneStudent())
+      fetchStudent: (studentId) => dispatch(fetchOneStudent(studentId))
     }
 }
 
