@@ -23,9 +23,9 @@ export const fetchStudents = () => {
     }
 }
 
-export const fetchOneStudent = () => {
+export const fetchOneStudent = (student) => {
     return async dispatch => {
-        const response = await axios.get('/api/students/:id')
+        const response = await axios.get(`/api/students/${student}`)
         dispatch(getOneStudent(response.data))
     }
 }

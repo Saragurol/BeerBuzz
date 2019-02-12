@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import {fetchCampuses} from '../reducers/subCampusReducer'
 import {connect} from 'react-redux'
+import Campus from './Campus'
 
 export class AllCampuses extends Component {
     
@@ -10,11 +11,11 @@ export class AllCampuses extends Component {
     render() {
         const campuses = this.props.campuses
         return (
-        <div>
+        <div id= "campus-list" >
             <h1>All Campuses</h1>
-            <ul className = "campus-list" >
-                {campuses.map(campus => <li key={campus.id}>Name: {campus.name} Image:{campus.imageUrl} </li>)}
-            </ul>
+                {
+                    campuses.map(campus => <Campus campus={campus}key={campus.id} />)
+                }
         </div>
         )
     }
