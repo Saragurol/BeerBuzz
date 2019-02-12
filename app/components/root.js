@@ -3,6 +3,8 @@ import {HashRouter, Route} from 'react-router-dom'
 import Students from './Students'
 import Campuses from './Campuses'
 import Navbar from './navbar'
+import SingleStudent from './singleStudent'
+import SingleCampus from './singleCampus'
 const Root = () => {
   return (
     <HashRouter>
@@ -11,8 +13,10 @@ const Root = () => {
       <main>
         <h1>Welcome to the Margaret Hamilton Academy of JavaScript!</h1>
         <p>This seems like a nice place to get started with some Routes!</p>
-        <Route  path= "/students" component={Students} />
-        <Route  path= "/campuses" component={Campuses} />
+        <Route  exact path= "/students" component={Students} />
+        <Route  exact path= "/campuses" component={Campuses} />
+        <Route  exact path= "/students/:id" component={SingleStudent} />
+        <Route  exact path= "/campuses/:id" component={SingleCampus} />
       </main>
     </div>
     </HashRouter>
