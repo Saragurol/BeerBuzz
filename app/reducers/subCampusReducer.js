@@ -19,7 +19,9 @@ export const fetchCampuses = () => {
 
 //initial state
 const initialState = {
-    campuses: []
+    campuses: [{id: 1, name: 'StonyBrook', imageUrl: 'http://www.ocsaccess.com/admin/clientfiles/ucsne/images/xlarge/mm%20choc.jpg', address: '10 old drive', description: 'cool school' },
+    {id: 2, name: 'Oswego', imageUrl: 'http://www.ocsaccess.com/admin/clientfiles/ucsne/images/xlarge/mm%20choc.jpg', address: '9 old drive', description: 'cool school' },
+    {id: 3, name: 'Fordham', imageUrl: 'http://www.ocsaccess.com/admin/clientfiles/ucsne/images/xlarge/mm%20choc.jpg', address: '8 old drive', description: 'cool school' }]
 }
 
 // Reducer- campus subReducer

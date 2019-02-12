@@ -3,14 +3,16 @@ import {fetchStudents} from '../reducers/subStudentReducer'
 import {connect} from 'react-redux'
 
 export class AllStudents extends Component {
-
-    componentDidMount () {
+    
+    async componentDidMount () {
         this.props.fetchInitialStudents()
     }
     render() {
         const students = this.props.students
+        console.log('STUDENTSSSSSS', students)
         return (
         <div>
+            <h1>All Students</h1>
             <ul className = "student-list" >
                 {students.map(student => <li key={student.id}>Name: {student.name}</li>)}
             </ul>      
@@ -21,7 +23,7 @@ export class AllStudents extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        students: state.students
+        students: state.studentSubReducer.students
     }
 }
 

@@ -11,8 +11,8 @@ const Root = () => {
       <main>
         <h1>Welcome to the Margaret Hamilton Academy of JavaScript!</h1>
         <p>This seems like a nice place to get started with some Routes!</p>
-        <Route path= "/students" component={Students} />
-        <Route path= "/campuses" component={Campuses} />
+        <Route  path= "/students" component={Students} />
+        <Route  path= "/campuses" component={Campuses} />
       </main>
     </div>
     </HashRouter>

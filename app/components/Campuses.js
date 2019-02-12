@@ -3,15 +3,17 @@ import {fetchCampuses} from '../reducers/subCampusReducer'
 import {connect} from 'react-redux'
 
 export class AllCampuses extends Component {
-    componentDidMount () {
+    
+    async componentDidMount() {
         this.props.fetchInitialCampuses()
     }
     render() {
         const campuses = this.props.campuses
         return (
         <div>
+            <h1>All Campuses</h1>
             <ul className = "campus-list" >
-                {campuses.map(campus => <li key={campus.id}>Name: {campus.name} Image:{campus.image} </li>)}
+                {campuses.map(campus => <li key={campus.id}>Name: {campus.name} Image:{campus.imageUrl} </li>)}
             </ul>
         </div>
         )
@@ -20,13 +22,13 @@ export class AllCampuses extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        campuses: state.campuses
+        campuses: state.campusSubReducer.campuses
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        fetchInitialcampuses: () => dispatch(fetchCampuses())
+        fetchInitialCampuses: () => dispatch(fetchCampuses())
     }
 }
 
