@@ -30,14 +30,16 @@ export const fetchCampuses = () => {
 }
 
 export const fetchOneCampus = (campusId) => {
+    console.log('NAP', campusId)
     return async dispatch => {
         const response = await axios.get(`/api/campuses/${campusId}`)
+      
         dispatch(getOneCampus(response.data))
     }
 }
 
 export const fetchAllRegisteredStudents = (campusId) => {
-    console.log("IM CAMPUS ID", campusId)
+    console.log('TEST', campusId)
     return async dispatch => {
         const response = await axios.get(`/api/campuses/${campusId}/students`)
         dispatch(getAllRegisteredStudents(response.data))

@@ -2,8 +2,6 @@
 
 const router = require('express').Router()
 const {Student, Campus} = require('../db')
-// const Student = require('../db/student')
-// const Campus = require('../db/campus')
 
 // Your routes go here!
 // NOTE: Any routes that you put here are ALREADY mounted on `/api`
@@ -45,17 +43,6 @@ router.get('/students/:id', async (req, res, next) => {
   }
 })
 
-// Get the campus that the student belongs to
-router.get('/students/:id/campuses', async (req, res, next) => {
-  try {
-    const studentId = req.params.id
-    const campus = await Campus.findAll({ where: {studentId} })
-    res.json(campus)
-  } catch (error) {
-    next(error)
-  }
-})
-
 router.get('/campuses', async (req, res, next) => {
   try {
     const allCampuses = await Campus.findAll()
@@ -70,8 +57,6 @@ router.get('/campuses/:id/students', async (req, res, next) => {
   try {
     const campusId = req.params.id
     const students = await Student.findAll({ where: {campusId} })
-    console.log('IAM CAMPUS ID', campusId)
-    console.log(('I AM STUDENTS', students))
     res.json(students)
   } catch (error) {
     next(error)

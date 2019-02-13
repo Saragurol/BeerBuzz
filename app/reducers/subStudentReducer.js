@@ -26,14 +26,15 @@ export const fetchStudents = () => {
 export const fetchOneStudent = (student) => {
     return async dispatch => {
         const response = await axios.get(`/api/students/${student}`)
-        console.log(response)
         dispatch(getOneStudent(response.data))
     }
 }
+
 //initial state
 const initialState = {
     students: [],
-    student: {}
+    student: {},
+    campus: []
 }
 
 //Reducer -  studentSubReducer
