@@ -14,7 +14,6 @@ const Root = () => {
       <Navbar />
       <main>
         <h1>Welcome to the Margaret Hamilton Academy of JavaScript!</h1>
-        <p>This seems like a nice place to get started with some Routes!</p>
         <Route  exact path= "/students" component={Students} />
         <Route  exact path= "/campuses" component={Campuses} />
         <Route  exact path= "/students/:id" component={SingleStudent} />

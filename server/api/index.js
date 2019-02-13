@@ -43,6 +43,21 @@ router.get('/students/:id', async (req, res, next) => {
   }
 })
 
+router.post('/students',  async (req, res, next) => {
+  try {
+      let newBody = req.body
+      if (newBody !== undefined){
+          const newStudent = await Student.create(newBody)
+          res.json(newStudent)
+      }
+      else {
+          res.status(500)
+      }
+    } catch (error) {
+        next(error)
+    }
+})
+
 router.get('/campuses', async (req, res, next) => {
   try {
     const allCampuses = await Campus.findAll()
@@ -74,6 +89,21 @@ router.get('/campuses/:id', async (req, res, next) => {
   } catch (error) {
       next(error)
   }
+})
+
+router.post('/campuses',  async (req, res, next) => {
+  try {
+      let newBody = req.body
+      if (newBody !== undefined){
+          const newCampus = await Campus.create(newBody)
+          res.json(newCampus)
+      }
+      else {
+          res.status(500)
+      }
+    } catch (error) {
+        next(error)
+    }
 })
 
 router.use((req, res, next) => {
