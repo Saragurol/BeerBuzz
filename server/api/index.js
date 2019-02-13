@@ -58,6 +58,19 @@ router.post('/students',  async (req, res, next) => {
     }
 })
 
+router.delete('/students/:id', async (req, res, next) => {
+  try {
+    await Student.destroy({
+      where: {
+        id: req.params.id
+      }
+    })
+    res.status(204)
+  } catch (error) {
+    next(error)
+  }
+})
+
 router.get('/campuses', async (req, res, next) => {
   try {
     const allCampuses = await Campus.findAll()
@@ -104,6 +117,19 @@ router.post('/campuses',  async (req, res, next) => {
     } catch (error) {
         next(error)
     }
+})
+
+router.delete('/campuses/:id', async (req, res, next) => {
+  try {
+    await Campus.destroy({
+      where: {
+        id: req.params.id
+      }
+    })
+    res.status(204)
+  } catch (error) {
+    next(error)
+  }
 })
 
 router.use((req, res, next) => {
