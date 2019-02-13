@@ -13,6 +13,7 @@ const Campus = (props) => {
         <a href="#">
             <img className="media-object" src={campus.imageUrl} alt="image" />
         </a>
+        <button className="remove" onClick={() => removeACampus(campus.id)} >X</button>
       </div>
     </div>
   )
