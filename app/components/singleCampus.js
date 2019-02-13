@@ -16,13 +16,12 @@ export class SingleCampus extends Component {
       <div id="single-student">
         <div className="student row" key={campus.id}>
           <div className="column">
-            <h3>{campus.name}</h3>
+            <h3>Campus Name: {campus.name}</h3>
             <a href="#">
               <img className="media-object" src={campus.imageUrl} alt="image" />
             </a>
             <h4>Address: {campus.address}</h4>
             <p>Description: {campus.description}</p>
-            <li>Enter List of All students in that campus</li>
             <RegisteredStudents campusId = {campus.id} />
           </div>
         </div>

@@ -13,7 +13,7 @@ export default class CreateCampus extends Component {
     }
     async handleSubmit (event){
         event.preventDefault()
-        this.props.addCampus(this.state)
+        this.props.postACampus(this.state)
         this.setState({
             name: '',
             address: ''
@@ -30,13 +30,15 @@ export default class CreateCampus extends Component {
             <form onSubmit= {this.handleSubmit}>
 
                 <label htmlFor= "name"> Campus name: </label>
-                <input type= "text"
+                <input
+                type= "text"
                 name = "name"
                 value = {this.state.name}
                 onChange = {this.handleChange} />
 
                 <label htmlFor= "address"> Address: </label>
-                <input type= "text"
+                <input
+                type= "text"
                 name = "address"
                 value = {this.state.address}
                 onChange = {this.handleChange} />

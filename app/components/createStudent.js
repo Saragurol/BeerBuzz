@@ -14,7 +14,7 @@ export default class CreateStudent extends Component {
     }
     async handleSubmit (event){
         event.preventDefault()
-        this.props.addStudent(this.state)
+        this.props.postAStudent(this.state)
         this.setState({
             firstName: '',
             lastName: '',
@@ -32,19 +32,22 @@ export default class CreateStudent extends Component {
             <form onSubmit= {this.handleSubmit}>
 
                 <label htmlFor= "firstName"> First name: </label>
-                <input type= "text"
+                <input
+                type= "text"
                 name = "firstName"
                 value = {this.state.firstName}
                 onChange = {this.handleChange} />
 
                 <label htmlFor= "lastName"> Last name: </label>
-                <input type= "text"
+                <input
+                type= "text"
                 name = "lastName"
                 value = {this.state.lastName}
                 onChange = {this.handleChange} />
 
                 <label htmlFor= "email"> Email: </label>
-                <input type= "text"
+                <input
+                type= "text"
                 name = "email"
                 value = {this.state.email}
                 onChange = {this.handleChange} />

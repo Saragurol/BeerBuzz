@@ -2,7 +2,9 @@ import axios from 'axios'
 
 const GET_CAMPUSES = 'GET_CAMPUSES'
 const GET_ONE_CAMPUS = 'GET_ONE_CAMPUS'
-const GET_ALL_REGISTERED_STUDENTS = 'GET_ALL_REGISTERED_STUDENTS '
+const GET_ALL_REGISTERED_STUDENTS = 'GET_ALL_REGISTERED_STUDENTS'
+const ADD_CAMPUS = 'ADD_CAMPUS'
+
 
 export const getCampuses = (campuses) => ({
     type: GET_CAMPUSES,
@@ -19,6 +21,11 @@ export const getAllRegisteredStudents = (students) => ({
     students
 })
 
+export const addCampus = (campuses) => ({
+    type: ADD_CAMPUS,
+    campuses
+})
+
 export const fetchCampuses = () => {
     return async dispatch => {
         const response = await axios.get('/api/campuses')
@@ -27,18 +34,23 @@ export const fetchCampuses = () => {
 }
 
 export const fetchOneCampus = (campusId) => {
-    console.log('CAMPUS ID ARRIVED INTO CAMPREDUCER', campusId)
     return async dispatch => {
-        const response = await axios.get(`/api/campuses/${campusId}`)    
+        const response = await axios.get(`/api/campuses/${campusId}`)  
         dispatch(getOneCampus(response.data))
     }
 }
 
 export const fetchAllRegisteredStudents = (campusId) => {
-    console.log('TEST', campusId)
     return async dispatch => {
         const response = await axios.get(`/api/campuses/${campusId}/students`)
         dispatch(getAllRegisteredStudents(response.data))
+    }
+}
+
+export const postCampus = (newCampus) => {
+    return async dispatch => {
+        const response = await axios.post('/api/campuses', newCampus)
+        dispatch(addCampus(response.data))
     }
 }
 
@@ -56,6 +68,8 @@ const campusSubReducer = (state = initialState, action) => {
         return {...state, campus: action.campus}
         case GET_ALL_REGISTERED_STUDENTS:
         return {...state, students: action.students}
+        case ADD_CAMPUS:
+        return {...state, campuses: [...state.campuses, action.campuses]}
         default:
         return state
     }

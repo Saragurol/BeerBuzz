@@ -2,7 +2,7 @@ import axios from 'axios'
 
 const GET_STUDENTS = 'GET_STUDENTS'
 const GET_ONE_STUDENT = 'GET_ONE_STUDENT'
-const GET_POSTED_STUDENT = 'GET_POSTED_STUDENT'
+const ADD_STUDENT = 'ADD_STUDENT'
 
 export const getStudents = (students) => ({
     type: GET_STUDENTS,
@@ -14,8 +14,8 @@ export const getOneStudent = (student) => ({
     student
 })
 
-export const getPostedStudent = (students) => ({
-    type: GET_POSTED_STUDENT,
+export const addStudent = (students) => ({
+    type: ADD_STUDENT,
     students
 })
 
@@ -33,10 +33,10 @@ export const fetchOneStudent = (student) => {
     }
 }
 
-export const fetchCreatedStudent = (student) => {
+export const postStudent = (newStudent) => {
     return async dispatch => {
-        const response = await axios.post('/api/students', student)
-        dispatch(getPostedStudent(response.data))
+        const response = await axios.post('/api/students', newStudent)
+        dispatch(addStudent(response.data))
     }
 }
 
@@ -51,7 +51,7 @@ const studentSubReducer = (state = initialState, action) => {
         return {...state, students: action.students}
         case GET_ONE_STUDENT:
         return {...state, student: action.student}
-        case GET_POSTED_STUDENT:
+        case ADD_STUDENT:
         return {...state, students: [...state.students, action.students]}
         default:
         return state
