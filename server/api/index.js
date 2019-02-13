@@ -52,7 +52,6 @@ router.get('/campuses', async (req, res, next) => {
   }
 })
 
-//get all the students that belong to the campus
 router.get('/campuses/:id/students', async (req, res, next) => {
   try {
     const campusId = req.params.id

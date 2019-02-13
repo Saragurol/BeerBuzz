@@ -6,7 +6,6 @@ import Navbar from './navbar'
 import SingleStudent from './singleStudent'
 import SingleCampus from './singleCampus'
 import RegisteredStudents from './registeredStudents'
-import RegisteredCampus from './registeredCampus'
 
 const Root = () => {
   return (

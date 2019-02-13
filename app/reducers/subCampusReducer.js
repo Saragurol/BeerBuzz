@@ -1,11 +1,9 @@
 import axios from 'axios'
 
-//action types
 const GET_CAMPUSES = 'GET_CAMPUSES'
 const GET_ONE_CAMPUS = 'GET_ONE_CAMPUS'
 const GET_ALL_REGISTERED_STUDENTS = 'GET_ALL_REGISTERED_STUDENTS '
 
-// action creators
 export const getCampuses = (campuses) => ({
     type: GET_CAMPUSES,
     campuses
@@ -21,7 +19,6 @@ export const getAllRegisteredStudents = (students) => ({
     students
 })
 
-//thunks
 export const fetchCampuses = () => {
     return async dispatch => {
         const response = await axios.get('/api/campuses')
@@ -32,8 +29,7 @@ export const fetchCampuses = () => {
 export const fetchOneCampus = (campusId) => {
     console.log('CAMPUS ID ARRIVED INTO CAMPREDUCER', campusId)
     return async dispatch => {
-        const response = await axios.get(`/api/campuses/${campusId}`)
-      
+        const response = await axios.get(`/api/campuses/${campusId}`)    
         dispatch(getOneCampus(response.data))
     }
 }
@@ -46,14 +42,12 @@ export const fetchAllRegisteredStudents = (campusId) => {
     }
 }
 
-//initial state
 const initialState = {
     campuses: [],
     campus: {},
     students: []
 }
 
-// Reducer- campus subReducer
 const campusSubReducer = (state = initialState, action) => {
     switch (action.type) {
         case GET_CAMPUSES:

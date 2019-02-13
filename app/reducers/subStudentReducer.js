@@ -1,10 +1,8 @@
 import axios from 'axios'
 
-// action type
 const GET_STUDENTS = 'GET_STUDENTS'
 const GET_ONE_STUDENT = 'GET_ONE_STUDENT'
 
-//action creator
 export const getStudents = (students) => ({
     type: GET_STUDENTS,
     students
@@ -15,7 +13,6 @@ export const getOneStudent = (student) => ({
     student
 })
 
-//thunks
 export const fetchStudents = () => {
     return async dispatch => {
         const response = await axios.get('/api/students')
@@ -30,14 +27,11 @@ export const fetchOneStudent = (student) => {
     }
 }
 
-//initial state
 const initialState = {
     students: [],
     student: {},
-    campus: []
 }
 
-//Reducer -  studentSubReducer
 const studentSubReducer = (state = initialState, action) => {
     switch (action.type) {
         case GET_STUDENTS:
