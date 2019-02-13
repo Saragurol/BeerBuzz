@@ -6,6 +6,8 @@ import Navbar from './navbar'
 import SingleStudent from './singleStudent'
 import SingleCampus from './singleCampus'
 import RegisteredStudents from './registeredStudents'
+import RegisteredCampus from './registeredCampus'
+
 const Root = () => {
   return (
     <HashRouter>
@@ -18,7 +20,7 @@ const Root = () => {
         <Route  exact path= "/campuses" component={Campuses} />
         <Route  exact path= "/students/:id" component={SingleStudent} />
         <Route  exact path= "/campuses/:id" component={SingleCampus} />
-        <Route  exact path = "/campuses/:id/students" component={RegisteredStudents}/>
+        <Route  exact path= "/campuses/:id/students" component={RegisteredStudents} />
       </main>
     </div>
     </HashRouter>

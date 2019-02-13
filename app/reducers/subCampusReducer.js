@@ -30,7 +30,7 @@ export const fetchCampuses = () => {
 }
 
 export const fetchOneCampus = (campusId) => {
-    console.log('NAP', campusId)
+    console.log('CAMPUS ID ARRIVED INTO CAMPREDUCER', campusId)
     return async dispatch => {
         const response = await axios.get(`/api/campuses/${campusId}`)
       

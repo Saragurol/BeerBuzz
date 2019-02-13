@@ -6,26 +6,20 @@ import fetchOneCampus from '../reducers/subCampusReducer'
 export class RegisteredCampus extends Component {
     async componentDidMount () {
         if (this.props.campusId) {
-            console.log('SLEEPY', this.props.campusId)
+            console.log("HERE IS CAMPUS ID", this.props.campusId)
+            console.log("ALL PROPS", this.props)
             this.props.fetchCampus(this.props.campusId)
         }
     }   
     render () {
         const campus = this.props.campus
-        console.log("HERE MEOW", campus)
-        let result;
-        if (campus.name !== undefined) {
-            result = <Link to={`/campuses/${campus.id}`}>
-            {campus.name}
-            </Link>
-            
-        } else {
-            result = 'Sorry, this student is not registered to any campuses'
-        }
+        console.log("CAMPUS INFO", campus)
         return (
             <div className="students campus">
             <div className="column">
-                <h4>{result}</h4>
+                <Link to={`/campuses/${campus.id}`}>
+                    <h4>Campus: {campus.name}</h4>
+                </Link>
             </div>
             </div>
         )
