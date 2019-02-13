@@ -26,7 +26,3 @@ module.exports = {
   db, Student, Campus
 }
 
-// NOTE!!!!
-// I put a candy placeholder in imageUrl default value for both student and campus
-// check if we are exporting the modules correctly above
-

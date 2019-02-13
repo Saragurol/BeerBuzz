@@ -5,7 +5,6 @@ import Campus from './Campus'
 import CreateCampus from './createCampus'
 
 export class AllCampuses extends Component {
-    
     async componentDidMount() {
         this.props.fetchInitialCampuses()
     }

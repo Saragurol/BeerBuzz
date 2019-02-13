@@ -5,11 +5,11 @@ import RegisteredStudents from './registeredStudents'
 
 
 export class SingleCampus extends Component {
-
   async componentDidMount () {
     const campusId = Number(this.props.match.params.id)
     this.props.fetchCampus(campusId)
   }
+  
   render () {
     const campus = this.props.campus
     return (

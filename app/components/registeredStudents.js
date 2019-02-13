@@ -8,7 +8,8 @@ export class RegisteredStudents extends Component {
         if (this.props.campusId) {
             this.props.fetchCampus(this.props.campusId)
         }
-    }   
+    }
+     
     render () {
         const students = this.props.students
         let result;

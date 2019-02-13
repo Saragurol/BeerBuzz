@@ -9,10 +9,9 @@ export class SingleStudent extends Component {
     const studentId = Number(this.props.match.params.id)
     this.props.fetchStudent(studentId)
   }
+  
   render () {
     const student = this.props.student
-    console.log('HERE STUDENT', student)
-
     return (
       <div id="single-student">
         <div className="student row" key={student.id}>

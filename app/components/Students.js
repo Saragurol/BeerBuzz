@@ -4,11 +4,11 @@ import {connect} from 'react-redux'
 import Student from './Student'
 import CreateStudent from './createStudent'
 
-export class AllStudents extends Component {
-    
+export class AllStudents extends Component {    
     async componentDidMount () {
         this.props.fetchInitialStudents()
     }
+    
     render() {
         const students = this.props.students
         const postAStudent = this.props.postAStudent
