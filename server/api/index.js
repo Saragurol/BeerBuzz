@@ -113,25 +113,3 @@ router.use((req, res, next) => {
 })
 
 module.exports = router
-
-//SAMPLE SYNTAX!!!!!!
-
-// router.post('/articles',  async (req,res,next) =>{
-//     try {
-//         let newBody = req.body
-//         if(newBody !== undefined){
-//             const newArticle = await Article.create(newBody)
-//             res.json({message:'Created successfully', article: newArticle})
-//             //didnt construct the below object. missed this step: 
-//             //{
-//             //  message: 'Created successfully',
-//             // article: <the created article instance>
-//             //  }
-//         }
-//         else{
-//             res.status(500)
-//         }
-//     } catch (error) {
-//         next(error)
-//     }
-// })
