@@ -52,7 +52,7 @@ router.get('/students/:id/campuses', async (req, res, next) => {
     const campus = await Campus.findAll({ where: {studentId} })
     res.json(campus)
   } catch (error) {
-    next(error) 
+    next(error)
   }
 })
 
@@ -62,6 +62,19 @@ router.get('/campuses', async (req, res, next) => {
     res.json(allCampuses)
   } catch (error) {
       next(error)
+  }
+})
+
+//get all the students that belong to the campus
+router.get('/campuses/:id/students', async (req, res, next) => {
+  try {
+    const campusId = req.params.id
+    const students = await Student.findAll({ where: {campusId} })
+    console.log('IAM CAMPUS ID', campusId)
+    console.log(('I AM STUDENTS', students))
+    res.json(students)
+  } catch (error) {
+    next(error)
   }
 })
 
