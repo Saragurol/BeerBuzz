@@ -6,8 +6,8 @@ export default class CreateStudent extends Component {
         this.state = {
             firstName: '',
             lastName: '',
-            email: ''
-
+            email: '',
+            gpa: ''
         }
         this.handleChange = this.handleChange.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
@@ -18,7 +18,8 @@ export default class CreateStudent extends Component {
         this.setState({
             firstName: '',
             lastName: '',
-            email: ''
+            email: '',
+            gpa: ''
         })
     }
     handleChange (event){
@@ -50,6 +51,13 @@ export default class CreateStudent extends Component {
                 type= "text"
                 name = "email"
                 value = {this.state.email}
+                onChange = {this.handleChange} />
+
+                <label htmlFor= "gpa"> GPA: </label>
+                <input
+                type= "text"
+                name = "gpa"
+                value = {this.state.gpa}
                 onChange = {this.handleChange} />
                 <button type= "submit">Submit</button>
 
