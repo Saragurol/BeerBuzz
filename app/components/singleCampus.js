@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {fetchOneCampus} from '../reducers/subCampusReducer'
 import RegisteredStudents from './registeredStudents'
+import UpdateCampus from './updateCampus'
 
 
 export class SingleCampus extends Component {
@@ -23,6 +24,7 @@ export class SingleCampus extends Component {
             <h4>Address: {campus.address}</h4>
             <p>Description: {campus.description}</p>
             <RegisteredStudents campusId = {campus.id} />
+            <UpdateCampus />
           </div>
         </div>
       </div>

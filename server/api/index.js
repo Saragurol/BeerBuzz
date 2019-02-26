@@ -73,6 +73,25 @@ router.delete('/students/:id', async (req, res, next) => {
   }
 })
 
+router.put('/students/:id', async (req, res, next) => {
+  try {
+    const findStudent = await Student.findById(req.params.id)
+    if (findStudent){
+      const updatedStudent = await Student.update(req.body, {
+        where: {id: req.params.id},
+        returning: true,
+        plain: true
+      })
+      res.json(updatedStudent)
+    }
+    else {
+      res.status(500)
+    }
+  } catch (error) {
+    next(error)
+  }
+})
+
 router.get('/campuses', async (req, res, next) => {
   try {
     const allCampuses = await Campus.findAll()
@@ -129,6 +148,25 @@ router.delete('/campuses/:id', async (req, res, next) => {
       }
     })
     res.status(204).json({})
+  } catch (error) {
+    next(error)
+  }
+})
+
+router.put('/campuses/:id', async (req, res, next) => {
+  try {
+    const findCampus = await Campus.findById(req.params.id)
+    if (findCampus){
+      const updatedCampus = await Campus.update(req.body, {
+        where: {id: req.params.id},
+        returning: true,
+        plain: true
+      })
+      res.json(updatedCampus)
+    }
+    else {
+      res.status(500)
+    }
   } catch (error) {
     next(error)
   }
