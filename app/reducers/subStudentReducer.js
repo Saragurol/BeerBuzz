@@ -3,6 +3,7 @@ import axios from 'axios'
 const GET_STUDENTS = 'GET_STUDENTS'
 const GET_ONE_STUDENT = 'GET_ONE_STUDENT'
 const ADD_STUDENT = 'ADD_STUDENT'
+const DELETE_STUDENT = 'DELETE_STUDENT'
 
 export const getStudents = (students) => ({
     type: GET_STUDENTS,
@@ -17,6 +18,11 @@ export const getOneStudent = (student) => ({
 export const addStudent = (students) => ({
     type: ADD_STUDENT,
     students
+})
+
+export const deleteStudent = (studentId) => ({
+    type: DELETE_STUDENT,
+    studentId
 })
 
 export const fetchStudents = () => {
@@ -40,6 +46,13 @@ export const postStudent = (newStudent) => {
     }
 }
 
+export const removeStudent = (studentId) => {
+    return async dispatch => {
+        await axios.delete(`/api/students/${studentId}`)
+        dispatch(deleteStudent(studentId))
+    }
+}
+
 const initialState = {
     students: [],
     student: {},
@@ -53,6 +66,8 @@ const studentSubReducer = (state = initialState, action) => {
         return {...state, student: action.student}
         case ADD_STUDENT:
         return {...state, students: [...state.students, action.students]}
+        case DELETE_STUDENT:
+        return {...state, students: state.students.filter(student => student.id !== action.studentId)}
         default:
         return state
     }

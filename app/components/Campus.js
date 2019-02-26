@@ -1,8 +1,10 @@
+
 import React from 'react'
 import {Link} from 'react-router-dom'
 
 const Campus = (props) => {
   const campus = props.campus
+  const removeACampus = props.removeACampus
 
   return (
     <div className="campus row" key={campus.id}>
@@ -13,7 +15,7 @@ const Campus = (props) => {
         <a href="#">
             <img className="media-object" src={campus.imageUrl} alt="image" />
         </a>
-        <button className="remove" onClick={() => removeACampus(campus.id)} >X</button>
+        <button type= "button" className="remove" onClick={() => removeACampus(campus.id)} >X</button>
       </div>
     </div>
   )

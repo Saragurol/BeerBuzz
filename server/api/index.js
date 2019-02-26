@@ -22,7 +22,9 @@ const {Student, Campus} = require('../db')
 
 router.get('/students', async (req, res, next) => {
   try {
-    const allStudents = await Student.findAll()
+    const allStudents = await Student.findAll({
+      include: [Campus]
+    })
     res.json(allStudents)
   } catch (error) {
       next(error)
@@ -31,12 +33,12 @@ router.get('/students', async (req, res, next) => {
 
 router.get('/students/:id', async (req, res, next) => {
   try {
-    const studentById = await Student.findById(req.params.id)
+    const studentById = await Student.findById(req.params.id, {include: [Campus]})
     if (studentById){
       res.json(studentById)
     }
     else {
-      res.status(404)
+      res.status(404).json({})
     }
   } catch (error) {
       next(error)
@@ -57,7 +59,7 @@ router.post('/students',  async (req, res, next) => {
         next(error)
     }
 })
-
+//the res.status (500) isint necessary here bc in the middleware they are already saying that if there is an error send the 500 status. as long as we place everything in a try catch. this will be enough for this project. 
 router.delete('/students/:id', async (req, res, next) => {
   try {
     await Student.destroy({
@@ -65,7 +67,7 @@ router.delete('/students/:id', async (req, res, next) => {
         id: req.params.id
       }
     })
-    res.status(204)
+    res.status(204).json({})
   } catch (error) {
     next(error)
   }
@@ -126,7 +128,7 @@ router.delete('/campuses/:id', async (req, res, next) => {
         id: req.params.id
       }
     })
-    res.status(204)
+    res.status(204).json({})
   } catch (error) {
     next(error)
   }

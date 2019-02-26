@@ -27,9 +27,9 @@ export const addCampus = (campuses) => ({
     campuses
 })
 
-export const deleteCampus = (campuses) => ({
+export const deleteCampus = (campusId) => ({
     type: DELETE_CAMPUS,
-    campuses
+    campusId
 })
 
 export const fetchCampuses = () => {
@@ -40,6 +40,7 @@ export const fetchCampuses = () => {
 }
 
 export const fetchOneCampus = (campusId) => {
+    console.log('I AM CAMPUS ID', campusId)
     return async dispatch => {
         const response = await axios.get(`/api/campuses/${campusId}`)
         dispatch(getOneCampus(response.data))
@@ -62,8 +63,8 @@ export const postCampus = (newCampus) => {
 
 export const removeCampus = (campusId) => {
     return async dispatch => {
-        const response = await axios.delete(`/api/campuses/${campusId}`)
-        dispatch(deleteCampus(response.data))
+        await axios.delete(`/api/campuses/${campusId}`)
+        dispatch(deleteCampus(campusId))
     }
 }
 
@@ -84,7 +85,7 @@ const campusSubReducer = (state = initialState, action) => {
         case ADD_CAMPUS:
         return {...state, campuses: [...state.campuses, action.campuses]}
         case DELETE_CAMPUS:
-        return {...state, campuses: state.campuses.filter(campus => campus.id !== action.campuses.id)}
+        return {...state, campuses: state.campuses.filter(campus => campus.id !== action.campusId)}
         default:
         return state
     }
