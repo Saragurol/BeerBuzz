@@ -1,11 +1,11 @@
 import React from 'react'
 import {HashRouter, Route} from 'react-router-dom'
-import Students from './Students'
-import Campuses from './Campuses'
+import Beers from './Beers'
+import Breweries from './Breweries'
 import Navbar from './navbar'
-import SingleStudent from './singleStudent'
-import SingleCampus from './singleCampus'
-import RegisteredStudents from './registeredStudents'
+import SingleBeer from './singleBeer'
+import SingleBrewery from './singleBrewery'
+import RegisteredBeers from './registeredBeers'
 
 const Root = () => {
   return (
@@ -13,12 +13,12 @@ const Root = () => {
     <div>
       <Navbar />
       <main>
-        <h1>Welcome to the Margaret Hamilton Academy of JavaScript!</h1>
-        <Route  exact path= "/students" component={Students} />
-        <Route  exact path= "/campuses" component={Campuses} />
-        <Route  exact path= "/students/:id" component={SingleStudent} />
-        <Route  exact path= "/campuses/:id" component={SingleCampus} />
-        <Route  exact path= "/campuses/:id/students" component={RegisteredStudents} />
+        <h1>Beer Buzz</h1>
+        <Route  exact path= "/beers" component={Beers} />
+        <Route  exact path= "/breweries" component={Breweries} />
+        <Route  exact path= "/beers/:id" component={SingleBeer} />
+        <Route  exact path= "/breweries/:id" component={SingleBrewery} />
+        <Route  exact path= "/breweries/:id/beers" component={RegisteredBeers} />
       </main>
     </div>
     </HashRouter>

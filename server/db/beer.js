@@ -3,7 +3,7 @@
 const db = require('./database');
 const Sequelize = require('sequelize');
 
-const Campus = db.define('campus', {
+const Beer = db.define('beer', {
     name: {
       type: Sequelize.STRING,
       allowNull: false,
@@ -13,18 +13,21 @@ const Campus = db.define('campus', {
     },
     imageUrl: {
       type: Sequelize.STRING,
-      defaultValue: 'http://www.ocsaccess.com/admin/clientfiles/ucsne/images/xlarge/mm%20choc.jpg'
+      defaultValue: 'http://4.bp.blogspot.com/-3JeIxWBU7bY/UKjIt8lVpCI/AAAAAAAABx8/YM8piSOwczs/s1600/Schipperke-Puppy.jpg'
     },
-    address: {
-      type: Sequelize.STRING,
+    discription: {
+      type: Sequelize.TEXT
+    },
+    volume: {
+      type: Sequelize.DECIMAL,
       allowNull: false,
       validate: {
         notEmpty: true
       }
-    },
-    description: {
-      type: Sequelize.TEXT
+
     }
   })
 
-module.exports = Campus;
+module.exports = Beer;
+
+//eventually want to add stuff for comments rating

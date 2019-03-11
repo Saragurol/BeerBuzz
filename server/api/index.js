@@ -1,41 +1,24 @@
 'use strict'
 
 const router = require('express').Router()
-const {Student, Campus} = require('../db')
+const {Beer, Brewery} = require('../db')
 
-// Your routes go here!
-// NOTE: Any routes that you put here are ALREADY mounted on `/api`
-// You can put all routes in this file HOWEVER,
-// this file should almost be like a table of contents for the routers you create!
-// For example:
-//
-// For your `/api/puppies` routes:
-// router.use('/puppies', require('./puppies'))
-//
-// And for your `/api/kittens` routes:
-// router.use('/kittens', require('./kittens'))
-
-// If someone makes a request that starts with `/api`,
-// but you DON'T have a corresponding router, this piece of
-// middleware will generate a 404, and send it to your
-// error-handling endware!
-
-router.get('/students', async (req, res, next) => {
+router.get('/beers', async (req, res, next) => {
   try {
-    const allStudents = await Student.findAll({
-      include: [Campus]
+    const allBeers = await Beer.findAll({
+      include: [Brewery]
     })
-    res.json(allStudents)
+    res.json(allBeers)
   } catch (error) {
       next(error)
   }
 })
 
-router.get('/students/:id', async (req, res, next) => {
+router.get('/beers/:id', async (req, res, next) => {
   try {
-    const studentById = await Student.findById(req.params.id, {include: [Campus]})
-    if (studentById){
-      res.json(studentById)
+    const BeerById = await Beer.findById(req.params.id)
+    if (BeerById){
+      res.json(BeerById)
     }
     else {
       res.status(404).json({})
@@ -45,12 +28,12 @@ router.get('/students/:id', async (req, res, next) => {
   }
 })
 
-router.post('/students',  async (req, res, next) => {
+router.post('/beers',  async (req, res, next) => {
   try {
       let newBody = req.body
       if (newBody !== undefined){
-          const newStudent = await Student.create(newBody)
-          res.json(newStudent)
+          const newBeers = await Beer.create(newBody)
+          res.json(newBeers)
       }
       else {
           res.status(500)
@@ -60,9 +43,9 @@ router.post('/students',  async (req, res, next) => {
     }
 })
 //the res.status (500) isint necessary here bc in the middleware they are already saying that if there is an error send the 500 status. as long as we place everything in a try catch. this will be enough for this project. 
-router.delete('/students/:id', async (req, res, next) => {
+router.delete('/beers/:id', async (req, res, next) => {
   try {
-    await Student.destroy({
+    await Beer.destroy({
       where: {
         id: req.params.id
       }
@@ -73,16 +56,16 @@ router.delete('/students/:id', async (req, res, next) => {
   }
 })
 
-router.put('/students/:id', async (req, res, next) => {
+router.put('/beers/:id', async (req, res, next) => {
   try {
-    const findStudent = await Student.findById(req.params.id)
-    if (findStudent){
-      const updatedStudent = await Student.update(req.body, {
+    const findBeers = await Beer.findById(req.params.id)
+    if (findBeers){
+      const updatedBeers = await Beer.update(req.body, {
         where: {id: req.params.id},
         returning: true,
         plain: true
       })
-      res.json(updatedStudent)
+      res.json(updatedBeers)
     }
     else {
       res.status(500)
@@ -92,30 +75,30 @@ router.put('/students/:id', async (req, res, next) => {
   }
 })
 
-router.get('/campuses', async (req, res, next) => {
+router.get('/breweries', async (req, res, next) => {
   try {
-    const allCampuses = await Campus.findAll()
-    res.json(allCampuses)
+    const allBreweries = await Brewery.findAll()
+    res.json(allBreweries)
   } catch (error) {
       next(error)
   }
 })
 
-router.get('/campuses/:id/students', async (req, res, next) => {
+router.get('/breweries/:id/beers', async (req, res, next) => {
   try {
-    const campusId = req.params.id
-    const students = await Student.findAll({ where: {campusId} })
-    res.json(students)
+    const breweryId = req.params.id
+    const Beers = await Beer.findAll({ where: {breweryId} })
+    res.json(Beers)
   } catch (error) {
     next(error)
   }
 })
 
-router.get('/campuses/:id', async (req, res, next) => {
+router.get('/breweries/:id', async (req, res, next) => {
   try {
-    const campusById = await Campus.findById(req.params.id)
-    if (campusById){
-      res.json(campusById)
+    const BreweryById = await Brewery.findById(req.params.id, {include: [Beer]})
+    if (BreweryById){
+      res.json(BreweryById)
     }
     else {
       res.status(404)
@@ -125,12 +108,12 @@ router.get('/campuses/:id', async (req, res, next) => {
   }
 })
 
-router.post('/campuses',  async (req, res, next) => {
+router.post('/breweries',  async (req, res, next) => {
   try {
       let newBody = req.body
       if (newBody !== undefined){
-          const newCampus = await Campus.create(newBody)
-          res.json(newCampus)
+          const newBrewery = await Brewery.create(newBody)
+          res.json(newBrewery)
       }
       else {
           res.status(500)
@@ -140,9 +123,9 @@ router.post('/campuses',  async (req, res, next) => {
     }
 })
 
-router.delete('/campuses/:id', async (req, res, next) => {
+router.delete('/breweries/:id', async (req, res, next) => {
   try {
-    await Campus.destroy({
+    await Brewery.destroy({
       where: {
         id: req.params.id
       }
@@ -153,16 +136,16 @@ router.delete('/campuses/:id', async (req, res, next) => {
   }
 })
 
-router.put('/campuses/:id', async (req, res, next) => {
+router.put('/breweries/:id', async (req, res, next) => {
   try {
-    const findCampus = await Campus.findById(req.params.id)
-    if (findCampus){
-      const updatedCampus = await Campus.update(req.body, {
+    const findBrewery = await Brewery.findById(req.params.id)
+    if (findBrewery){
+      const updatedBrewery = await Brewery.update(req.body, {
         where: {id: req.params.id},
         returning: true,
         plain: true
       })
-      res.json(updatedCampus)
+      res.json(updatedBrewery)
     }
     else {
       res.status(500)

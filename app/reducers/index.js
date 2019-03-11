@@ -2,12 +2,12 @@
 // When you're ready to use it, un-comment the line below!
 
 import {combineReducers} from 'redux'
-import studentSubReducer from './subStudentReducer'
-import campusSubReducer from './subCampusReducer'
+import beerSubReducer from './subBeerReducer'
+import brewerySubReducer from './subBreweryReducer'
 
 const rootReducer = combineReducers({
-  studentSubReducer,
-  campusSubReducer
+  beerSubReducer,
+  brewerySubReducer
 })
 
 export default rootReducer

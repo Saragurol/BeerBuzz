@@ -1,81 +1,105 @@
-const { db, Campus, Student } = require("./server/db");
+const { db, Brewery, Beer } = require("./server/db");
 const { green, red } = require("chalk");
 
 const seed = async () => {
   await db.sync({ force: true });
 
   // seed your database here!
-  const campuses = [
+  const breweries = [
     {
       id: 1,
-      name: "StonyBrook",
-      imageUrl:
-        "http://www.ocsaccess.com/admin/clientfiles/ucsne/images/xlarge/mm%20choc.jpg",
-      address: "10 old drive",
-      description: "cool school"
+      name: "Brooklyn Brewery",
+      imageUrl: 'https://www.miltonglaser.com/files/Brooklynlogo-1088.jpg',
+      address: "79 N 11th St, Brooklyn, NY 11249",
+      description: "Microbrewery with tastings & tours that offer an inside look at the creation process."
     },
     {
       id: 2,
-      name: "Oswego",
+      name: "Harpoon Brewery",
       imageUrl:
-      'https://target.scene7.com/is/image/Target/GUEST_3d2a8073-36e6-4cec-8c8c-872639105820?wid=488&hei=488&fmt=pjpeg',
-      address: "9 old drive",
-      description: "nice school"
+      'https://pbs.twimg.com/profile_images/688084265683304448/c5qTBaHu_400x400.jpg',
+      address: "306 Northern Ave, Boston, MA 02210",
+      description: "Harpoon Brewery is an American brewery, with plants in Boston, Massachusetts, and Windsor, Vermont. Founded in 1986, the brewery was the first company to obtain a permit to manufacture and sell alcohol in the Commonwealth of Massachusetts in more than 25 years."
     },
     {
       id: 3,
-      name: "Fordham",
+      name: "Coney Island Brewery",
       imageUrl:
-      'https://target.scene7.com/is/image/Target/GUEST_9766bfa7-3fcb-4f4c-9576-15e17ccc1044?wid=488&hei=488&fmt=pjpeg',
-      address: "8 old drive",
-      description: "great school"
+      'http://coneyislandbeer.com/wp-content/themes/coneyisland/dist/images/logo.png',
+      address: "1904 Surf Ave, Brooklyn, NY 11224",
+      description: "Coney Island Brewing Company brews craft beer and craft hard soda inspired by the spirit and flavors of Coney Island"
     }
   ];
 
-  await Promise.all(campuses.map(async campus => await Campus.create(campus)));
+  await Promise.all(breweries.map(async brewery => await Brewery.create(brewery)));
 
-  const students = [
+  const beers = [
     {
       id: 1,
-      firstName: "Tim",
-      lastName: "Lu",
-      email: "tim@gmail.com",
-      imageUrl:
-      "http://4.bp.blogspot.com/-3JeIxWBU7bY/UKjIt8lVpCI/AAAAAAAABx8/YM8piSOwczs/s1600/Schipperke-Puppy.jpg",
-      gpa: "4.0"
+      name: "BROOKLYN SUMMER ALE",
+      imageUrl: "http://brooklynbrewery.com/system/beers/2_shelf_Summer-NEW-BeerPage_original.png?1520611864",
+      discription: "Sunny Pale Ale",
+      volume: 5.0,
+      breweryId: 1
     },
     {
       id: 2,
-      firstName: "Eileen",
-      lastName: "Saraguro",
-      email: "Eileen@gmail.com",
-      imageUrl:
-        "http://www.101dogbreeds.com/wp-content/uploads/2015/10/Chi-Spaniel-Puppy-Pictures.jpg",
-      gpa: "4.0",
-      campusId: 2 
+      name: "BEL AIR SOUR",
+      imageUrl: "http://brooklynbrewery.com/system/beers/73_shelf_Bel-Air-Sour-12oz-Beer-Page_original.png?1515168482",
+      discription: "Sour Ale",
+      volume: 5.8,
+      breweryId: 1
     },
     {
       id: 3,
-      firstName: "Mars",
-      lastName: "Saraguro",
-      email: "Mars@gmail.com",
-      imageUrl: "https://www.askideas.com/media/19/Papillon-Puppy-Looking.jpg",
-      gpa: "4.0",
-      campusId: 1
+      name: "REC. LEAGUE",
+      imageUrl: "https://wwwimageslive.harpoonbrewery.com/Rec-League-Updated.png?mw400-mh800",
+      discription: "Hazy Pale",
+      volume: 3.8,
+      breweryId: 2
     },
     {
       id: 4,
-      firstName: "Alyssa",
-      lastName: "Mendoza",
-      email: "Alyssa@gmail.com",
-      imageUrl: "http://images.shape.mdpcdn.com/sites/shape.com/files/styles/slide/public/puppy-2_0.jpg",
-      gpa: "4.0",
-      campusId: 1
+      name: "WEIZENBOT",
+      imageUrl: "https://wwwimageslive.harpoonbrewery.com/Weizenbot-BD42.jpg?mw400-mh800",
+      discription: "A dark, robust, German-style wheat beer",
+      volume: 8.0,
+      breweryId: 2
+    },
+    {
+      id: 5,
+      name: "MERMAID PILSNER",
+      imageUrl: "http://coneyislandbeer.com/wp-content/uploads/2019/01/5bd14d58d9d48e001ae426eb-v5.jpg",
+      discription: "A light-bodied, crisp drinking, nicely hopped lager",
+      volume: 5.2,
+      breweryId: 3
+    },
+    {
+      id: 6,
+      name: "CONEY ISLAND LAGER",
+      imageUrl: "https://beerconnoisseur.com/sites/default/files/styles/beer_page_245w/public/beer/coney-island-lager.jpg?itok=LE52Yews",
+      discription: "A a classic dry-hopped American lager",
+      volume: 5.5,
+      breweryId: 3
+    },
+    {
+      id: 7,
+      name: "BOSTON ALE",
+      imageUrl: "https://boeningbrothers.com/wp-content/uploads/2018/03/Sam-Adams-Boston-Ale-600x500.png",
+      discription: "Earthy and spicy hop notes with a smooth malt body",
+      volume: 5.4
+    },
+    {
+      id: 8,
+      name: "ICEMAN",
+      imageUrl: "https://www.angryorchard.com//app_media/Angry-Orchard-Redux/Content/Cider-Details/Iceman/prod_img_iceman.file?h=3707&la=en&w=1128&hash=4DA128BD38B2B0F16E61FC500E5360FA76D6BE79",
+      discription: "Rich, complex, with a unique crisp apple taste and notes of carmel and toffee, with a smooth vanilla character",
+      volume: 10.0
     }
   ];
 
   await Promise.all(
-    students.map(async student => await Student.create(student))
+    beers.map(async beer => await Beer.create(beer))
   );
 
   console.log(green("Seeding success!"));
@@ -87,3 +111,7 @@ seed().catch(err => {
   console.error(err);
   db.close();
 });
+
+
+//make all inputs upper caps
+//welcome page should ask if your 21 or older to visit
