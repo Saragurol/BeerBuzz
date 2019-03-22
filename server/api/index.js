@@ -16,9 +16,9 @@ router.get('/beers', async (req, res, next) => {
 
 router.get('/beers/:id', async (req, res, next) => {
   try {
-    const BeerById = await Beer.findById(req.params.id)
-    if (BeerById){
-      res.json(BeerById)
+    const oneBeer = await Beer.findById(req.params.id, {include: [Brewery]})
+    if (oneBeer){
+      res.json(oneBeer)
     }
     else {
       res.sendStatus(404).json({})
@@ -110,11 +110,9 @@ router.get('/breweries/:id', async (req, res, next) => {
 
 router.post('/breweries',  async (req, res, next) => {
   try {
-    console.log("HIT ROUTE")
       let newBody = req.body
       if (newBody !== undefined){
           const newBrewery = await Brewery.create(newBody)
-          console.log("SERVERSIDE", newBrewery)
           res.json(newBrewery)
       }
       else {

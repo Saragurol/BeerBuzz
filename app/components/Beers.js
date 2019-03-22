@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import {fetchBeers} from '../reducers/subBeerReducer'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
+import PostBeer from './PostBeer'
 
 export class AllBeers extends Component {    
     async componentDidMount () {
@@ -10,6 +11,7 @@ export class AllBeers extends Component {
     
     render() {
         const beers = this.props.beers
+        const addBeer = this.props.addBeer
         return (
         <div id="beer-list">
             <div className="row">
@@ -31,6 +33,7 @@ export class AllBeers extends Component {
                      </div>))
             }
             </div>
+            <PostBeer addBeer={addBeer}/>
         </div>
     )}
 }

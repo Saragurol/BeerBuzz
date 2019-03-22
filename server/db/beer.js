@@ -24,7 +24,6 @@ const Beer = db.define('beer', {
       validate: {
         notEmpty: true
       }
-
     }
   })
 

@@ -1,6 +1,8 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {fetchOneBeer} from '../reducers/subBeerReducer'
+import {Link} from 'react-router-dom'
+
 
 export class SingleBeer extends Component {
     async componentDidMount () {
@@ -9,11 +11,10 @@ export class SingleBeer extends Component {
     }
     render(){
         const beer = this.props.beer
-        console.log("BEER", beer)
+
         return (
             <div className="container">
             <div className="col s12 m7">
-                <h2 className="header">Single Beer</h2>
                 <div className="card horizontal">
                 <div className="card-image">
                     <img src={beer.imageUrl} />
@@ -21,9 +22,15 @@ export class SingleBeer extends Component {
                 <div className="card-stacked">
                     <div className="card-content">
                     <p>{beer.discription}</p>
+                    <hr />
+                    <p>Alcohol by Volume: {beer.volume}</p>
                     </div>
                     <div className="card-action">
-                    <a href="#">This is a link</a>
+                        {
+                            (beer.brewery) ?
+                            <Link to={`/breweries/${beer.breweryId}`}>{beer.brewery.name} </Link> :
+                            <h5>Sorry, there is no brewery listed</h5>
+                        }
                     </div>
                 </div>
                 </div>
@@ -42,7 +49,6 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         fetchBeer: (beerId) => dispatch(fetchOneBeer(beerId))
-
     }
 }
 
