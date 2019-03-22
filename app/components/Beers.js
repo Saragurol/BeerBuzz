@@ -1,24 +1,38 @@
 import React, { Component } from 'react'
 import {fetchBeers} from '../reducers/subBeerReducer'
 import {connect} from 'react-redux'
-import Beer from './Beer'
+import {Link} from 'react-router-dom'
 
 export class AllBeers extends Component {    
     async componentDidMount () {
-        this.props.fetchInitialBeers()
+        await this.props.fetchInitialBeers()
     }
     
     render() {
         const beers = this.props.beers
         return (
         <div id="beer-list">
-            <h1>All Beers</h1>
+            <div className="row">
             {
-                beers.map(beer => <Beer beer={beer} key={beer.id} />)
+                beers.map(beer =>
+                    (<div key={beer.id}>
+                        <div className="col s12 m4">
+                        <div className="card">
+                            <div className="card-image">
+                            <img src={beer.imageUrl} />
+                            <span className="card-title">{beer.name}</span>
+                            <Link className="btn-floating halfway-fab waves-effect waves-light red" to={`/beers/${beer.id}`}><i className="material-icons">add</i></Link>
+                            </div>
+                            <div className="card-content">
+                            <p>{beer.name}</p>
+                            </div>
+                        </div>
+                        </div>
+                     </div>))
             }
+            </div>
         </div>
-        )
-    }
+    )}
 }
 
 const mapStateToProps = (state) => {
@@ -34,3 +48,4 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(AllBeers)
+

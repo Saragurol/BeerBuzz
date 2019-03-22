@@ -31,6 +31,7 @@ export const fetchOneBeer = (beerId) => {
 const initialState = {
     beers: [],
     beer: {},
+    brewery: []
 }
 
 const beersubReducer = (state = initialState, action) => {

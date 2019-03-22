@@ -14,12 +14,22 @@ const Root = () => {
       <Navbar />
       <main>
         <h1>Beer Buzz</h1>
-        <Route  exact path= "/beers" component={Beers} />
+        <Route  exact path= "/" component={Breweries} />
         <Route  exact path= "/breweries" component={Breweries} />
-        <Route  exact path= "/beers/:id" component={SingleBeer} />
         <Route  exact path= "/breweries/:id" component={SingleBrewery} />
         <Route  exact path= "/breweries/:id/beers" component={RegisteredBeers} />
       </main>
+      <Route  exact path= "/beers" component={Beers} />
+      <Route  exact path= "/beers/:id" component={SingleBeer} />
+
+      <footer className="page-footer">
+          <div className="footer-copyright">
+            <div className="container">
+            © Beer Buzz
+            <p className="grey-text text-lighten-4 right"><i className="material-icons">favorite_border</i></p>
+            </div>
+          </div>
+      </footer>
     </div>
     </HashRouter>
   )

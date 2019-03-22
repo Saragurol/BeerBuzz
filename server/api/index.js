@@ -21,7 +21,7 @@ router.get('/beers/:id', async (req, res, next) => {
       res.json(BeerById)
     }
     else {
-      res.status(404).json({})
+      res.sendStatus(404).json({})
     }
   } catch (error) {
       next(error)
@@ -36,7 +36,7 @@ router.post('/beers',  async (req, res, next) => {
           res.json(newBeers)
       }
       else {
-          res.status(500)
+          res.sendStatus(500)
       }
     } catch (error) {
         next(error)
@@ -50,7 +50,7 @@ router.delete('/beers/:id', async (req, res, next) => {
         id: req.params.id
       }
     })
-    res.status(204).json({})
+    res.sendStatus(204)
   } catch (error) {
     next(error)
   }
@@ -68,7 +68,7 @@ router.put('/beers/:id', async (req, res, next) => {
       res.json(updatedBeers)
     }
     else {
-      res.status(500)
+      res.sendStatus(500)
     }
   } catch (error) {
     next(error)
@@ -101,7 +101,7 @@ router.get('/breweries/:id', async (req, res, next) => {
       res.json(BreweryById)
     }
     else {
-      res.status(404)
+      res.sendStatus(404)
     }
   } catch (error) {
       next(error)
@@ -110,13 +110,15 @@ router.get('/breweries/:id', async (req, res, next) => {
 
 router.post('/breweries',  async (req, res, next) => {
   try {
+    console.log("HIT ROUTE")
       let newBody = req.body
       if (newBody !== undefined){
           const newBrewery = await Brewery.create(newBody)
+          console.log("SERVERSIDE", newBrewery)
           res.json(newBrewery)
       }
       else {
-          res.status(500)
+          res.sendStatus(500)
       }
     } catch (error) {
         next(error)
@@ -130,7 +132,7 @@ router.delete('/breweries/:id', async (req, res, next) => {
         id: req.params.id
       }
     })
-    res.status(204).json({})
+    res.sendStatus(204)
   } catch (error) {
     next(error)
   }
@@ -145,10 +147,10 @@ router.put('/breweries/:id', async (req, res, next) => {
         returning: true,
         plain: true
       })
-      res.json(updatedBrewery)
+      res.json(updatedBrewery[1])
     }
     else {
-      res.status(500)
+      res.sendStatus(500)
     }
   } catch (error) {
     next(error)

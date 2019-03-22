@@ -6,16 +6,15 @@ import {Link} from 'react-router-dom'
 export class RegisteredBeers extends Component {
     async componentDidMount () {
         if (this.props.breweryId) {
-            this.props.fetchAllRegisteredBeers(this.props.breweryId)
+           await this.props.fetchAllRegisteredBeers(this.props.breweryId)
         }
     }
      
     render () {
         const beers = this.props.beers
-        console.log("I AM BEERS", beers)
         let result;
         if (beers.length === 0) {
-            result = <li>Sorry no beers attend this campus.</li>
+            result = <li>Oh no! Beers to review coming soon!</li>
         } else {
             result = beers.map(beer => 
             <Link key= {beer.id} to={`/beers/${beer.id}`}>
@@ -47,3 +46,5 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(RegisteredBeers)
+
+//can we put component did mount inside functional components 

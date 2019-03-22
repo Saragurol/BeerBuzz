@@ -9,7 +9,7 @@ const seed = async () => {
     {
       id: 1,
       name: "Brooklyn Brewery",
-      imageUrl: 'https://www.miltonglaser.com/files/Brooklynlogo-1088.jpg',
+      imageUrl: 'https://www.dafont.com/forum/attach/orig/3/3/334015.gif?1',
       address: "79 N 11th St, Brooklyn, NY 11249",
       description: "Microbrewery with tastings & tours that offer an inside look at the creation process."
     },

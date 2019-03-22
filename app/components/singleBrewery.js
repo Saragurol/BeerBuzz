@@ -1,30 +1,39 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {fetchOneBrewery} from '../reducers/subBreweryReducer'
+import {fetchOneBrewery, putBrewery} from '../reducers/subBreweryReducer'
 import RegisteredBeers from './registeredBeers'
+import PutBrewery from './PutBrewery'
 
 export class SingleBrewery extends Component {
   async componentDidMount () {
-    const breweryId = Number(this.props.match.params.id)
-    this.props.fetchBrewery(breweryId)
+    const breweryId = await Number(this.props.match.params.id)
+     await this.props.fetchBrewery(breweryId)
   }
-  
   render () {
-    // console.log("BREWERY", this.props.brewery)
     const brewery = this.props.brewery
+    const updateBrewery = this.props.updateBrewery
     return (
-      <div id="single-beer">
-        <div className="beer row" key={brewery.id}>
-          <div className="column">
-            <h3>Brewery name: {brewery.name}</h3>
-            <a href="#">
-              <img className="media-object" src={brewery.imageUrl} alt="image" />
-            </a>
-            <h4>Address: {brewery.address}</h4>
-            <p>Description: {brewery.description}</p>
-            <RegisteredBeers breweryId = {brewery.id} />
+      <div>
+      <div className="row">
+        <div className="col s12 m7" key={brewery.id}>
+          <div className="card">
+            <div className="card-image">
+            <img className="media-object" src={brewery.imageUrl} alt="image" />
+            </div>
+            <div className="card-content">
+            <span className="card-title">{brewery.name}</span>
+              <p>{brewery.description}</p>
+            </div>
+            <div className="card-content">
+              <p>Address: {brewery.address}</p>
+            </div>
+            <div className="card-action">
+              <RegisteredBeers breweryId = {brewery.id} />
+            </div>
           </div>
         </div>
+      </div>
+      <PutBrewery breweryId ={brewery.id} updateBrewery={updateBrewery} />
       </div>
     )
   }
@@ -38,7 +47,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        fetchBrewery: (breweryId) => dispatch(fetchOneBrewery(breweryId))
+        fetchBrewery: (breweryId) => dispatch(fetchOneBrewery(breweryId)),
+        updateBrewery: (breweryId, brewery) => dispatch(putBrewery(breweryId, brewery))
+
     }
 }
 
