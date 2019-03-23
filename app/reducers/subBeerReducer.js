@@ -35,7 +35,12 @@ export const fetchOneBeer = (beerId) => {
 }
 
 export const postBeer = (beer) => {
-    
+    console.log("HITS SUBBEER ROUTE")
+    return async dispatch => {
+        const response = await axios.post('/api/beers', beer)
+        dispatch(addBeer(response.data))
+    }
+
 }
 
 const initialState = {
@@ -47,9 +52,11 @@ const initialState = {
 const beersubReducer = (state = initialState, action) => {
     switch (action.type) {
         case GET_BEERS:
-        return {...state, beers: action.beers}
+            return {...state, beers: action.beers}
         case GET_ONE_BEER:
-        return {...state, beer: action.beer, brewery: action.beer.brewery}
+            return {...state, beer: action.beer, brewery: action.beer.brewery}
+        case ADD_BEER:
+            return {...state, beers: [...state.beers, action.beer]}
         default:
         return state
     }

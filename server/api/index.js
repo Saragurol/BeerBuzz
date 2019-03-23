@@ -29,7 +29,9 @@ router.get('/beers/:id', async (req, res, next) => {
 })
 
 router.post('/beers',  async (req, res, next) => {
+  console.log("REACHES POST ROOUTE")
   try {
+    console.log("REACHES POST ROOUTE22222")
       let newBody = req.body
       if (newBody !== undefined){
           const newBeers = await Beer.create(newBody)

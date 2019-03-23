@@ -21,7 +21,7 @@ export class SingleBeer extends Component {
                 </div>
                 <div className="card-stacked">
                     <div className="card-content">
-                    <p>{beer.discription}</p>
+                    <p>{beer.description}</p>
                     <hr />
                     <p>Alcohol by Volume: {beer.volume}</p>
                     </div>

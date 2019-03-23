@@ -13,9 +13,9 @@ const Beer = db.define('beer', {
     },
     imageUrl: {
       type: Sequelize.STRING,
-      defaultValue: 'http://4.bp.blogspot.com/-3JeIxWBU7bY/UKjIt8lVpCI/AAAAAAAABx8/YM8piSOwczs/s1600/Schipperke-Puppy.jpg'
+      defaultValue: 'https://dwa5x7aod66zk.cloudfront.net/assets/labtocat-be5eee0434960a8f73e54910df8e87b8a5a3b2d651c0b301670c04a9cc26a70f.png'
     },
-    discription: {
+    description: {
       type: Sequelize.TEXT
     },
     volume: {

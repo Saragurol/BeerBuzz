@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {fetchBeers} from '../reducers/subBeerReducer'
+import {fetchBeers, postBeer} from '../reducers/subBeerReducer'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import PostBeer from './PostBeer'
@@ -33,7 +33,7 @@ export class AllBeers extends Component {
                      </div>))
             }
             </div>
-            <PostBeer addBeer={addBeer}/>
+            <PostBeer addBeer={addBeer} />
         </div>
     )}
 }
@@ -46,7 +46,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        fetchInitialBeers: () => dispatch(fetchBeers())
+        fetchInitialBeers: () => dispatch(fetchBeers()),
+        addBeer: (beer) => dispatch(postBeer(beer))
     }
 }
 
