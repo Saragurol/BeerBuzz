@@ -4,6 +4,7 @@ const GET_BEERS = 'GET_BEERS'
 const GET_ONE_BEER = 'GET_ONE_BEER'
 const ADD_BEER = 'ADD_BEER'
 const UPDATE_BEER = 'UPDATE_BEER'
+const REMOVE_BEER = 'REMOVE_BEER'
 
 const getBeers = (beers) => ({
     type: GET_BEERS,
@@ -23,6 +24,11 @@ const addBeer = (beer) => ({
 const updateBeer = (beer) => ({
     type: UPDATE_BEER,
     beer
+})
+
+export const removeBeer = (beerId) => ({
+    type: REMOVE_BEER,
+    beerId
 })
 
 export const fetchBeers = () => {
@@ -55,6 +61,13 @@ export const putBeer = (beerId, beer) => {
     }
 }
 
+export const deleteBeer = (beerId) => {
+    return async dispatch => {
+        await axios.delete(`/api/beers/${beerId}`)
+        dispatch(removeBeer(beerId))
+    }
+}
+
 const initialState = {
     beers: [],
     beer: {},
@@ -71,8 +84,10 @@ const beersubReducer = (state = initialState, action) => {
             return {...state, beers: [...state.beers, action.beer]}
         case UPDATE_BEER:
             return {...state, beer: action.beer}
+        case REMOVE_BEER:
+            return {...state, beers: state.beers.filter(beer => beer.id !== action.beerId)}
         default:
-        return state
+            return state
     }
 }
 

@@ -29,7 +29,7 @@ router.get('/beers/:id', async (req, res, next) => {
 
 router.post('/beers',  async (req, res, next) => {
   try {
-    const newBeer = await Beer.create(req.params)
+    const newBeer = await Beer.create(req.body)
     res.json(newBeer)
     } catch (error) {
       console.log("ERROR", error)

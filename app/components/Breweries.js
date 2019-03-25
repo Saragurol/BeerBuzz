@@ -5,14 +5,8 @@ import {Link} from 'react-router-dom'
 import PostBrewery from './PostBrewery'
 
 export class AllBreweries extends Component {
-    constructor(){
-        super()
-        this.state = {
-            brewery: {}
-        }
-    }
-    async componentDidMount() {
-        await this.props.fetchBreweries()
+    componentDidMount() {
+        this.props.fetchBreweries()
     }
 
     render() {

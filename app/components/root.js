@@ -16,11 +16,13 @@ const Root = () => {
         <h1>Beer Buzz</h1>
         <Route  exact path= "/" component={Breweries} />
         <Route  exact path= "/breweries" component={Breweries} />
-        <Route  exact path= "/breweries/:id" component={SingleBrewery} />
+        <Route  path= "/breweries/:id" component={SingleBrewery} />
         <Route  exact path= "/breweries/:id/beers" component={RegisteredBeers} />
+        <Route  exact path= "/beers" component={Beers} />
+        <Route  path= "/beers/:id" component={SingleBeer} />
       </main>
-      <Route  exact path= "/beers" component={Beers} />
-      <Route  exact path= "/beers/:id" component={SingleBeer} />
+      {/* <Route  exact path= "/beers" component={Beers} />
+      <Route  path= "/beers/:id" component={SingleBeer} /> */}
 
       <footer className="page-footer">
           <div className="footer-copyright">
