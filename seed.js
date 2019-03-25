@@ -39,7 +39,7 @@ const seed = async () => {
       name: "WEIZENBOT",
       imageUrl: "https://wwwimageslive.harpoonbrewery.com/Weizenbot-BD42.jpg?mw400-mh800",
       description: "A dark, robust, German-style wheat beer",
-      volume: 8.0,
+      volume: '8.0',
       breweryId: 2
     },
     {
@@ -47,7 +47,7 @@ const seed = async () => {
       name: "REC. LEAGUE",
       imageUrl: "https://wwwimageslive.harpoonbrewery.com/Rec-League-Updated.png?mw400-mh800",
       description: "Hazy Pale",
-      volume: 3.8,
+      volume: '3.8',
       breweryId: 2
     },
     {
@@ -55,7 +55,7 @@ const seed = async () => {
       name: "HARPOON LIME-Y VICE",
       imageUrl: "https://wwwimageslive.harpoonbrewery.com/Lime-y-Vice-5D5F.jpg?mw400-mh800",
       description: "Salty, sour, tart, and refreshing, this is the perfect beer for every summer celebration.",
-      volume: 4.7,
+      volume: '4.7',
       breweryId: 2
     },
     {
@@ -63,7 +63,7 @@ const seed = async () => {
       name: "MERMAID PILSNER",
       imageUrl: "http://coneyislandbeer.com/wp-content/uploads/2019/01/5bd14d58d9d48e001ae426eb-v5.jpg",
       description: "A light-bodied, crisp drinking, nicely hopped lager",
-      volume: 5.2,
+      volume: '5.2',
       breweryId: 3
     },
     {
@@ -71,7 +71,7 @@ const seed = async () => {
       name: "CONEY ISLAND LAGER",
       imageUrl: "https://beerconnoisseur.com/sites/default/files/styles/beer_page_245w/public/beer/coney-island-lager.jpg?itok=LE52Yews",
       description: "A a classic dry-hopped American lager",
-      volume: 5.5,
+      volume: '5.5',
       breweryId: 3
     },
     {
@@ -79,14 +79,14 @@ const seed = async () => {
       name: "BOSTON ALE",
       imageUrl: "https://boeningbrothers.com/wp-content/uploads/2018/03/Sam-Adams-Boston-Ale-600x500.png",
       description: "Earthy and spicy hop notes with a smooth malt body",
-      volume: 5.4
+      volume: '5.4'
     },
     {
       id: 7,
       name: "BEL AIR SOUR",
       imageUrl: "http://brooklynbrewery.com/system/beers/73_shelf_Bel-Air-Sour-12oz-Beer-Page_original.png?1515168482",
       description: "Sour Ale",
-      volume: 5.8,
+      volume: '5.8',
       breweryId: 1
     },
     {
@@ -94,25 +94,17 @@ const seed = async () => {
       name: "BROOKLYN SUMMER ALE",
       imageUrl: "http://brooklynbrewery.com/system/beers/2_shelf_Summer-NEW-BeerPage_original.png?1520611864",
       description: "Sunny Pale Ale",
-      volume: 5.0,
+      volume: '5.0',
       breweryId: 1
     }
   ];
 
-  await Promise.all(
-    beers.map(async beer => Beer.create(beer))
-  );
-
-  console.log(green("Seeding success!"));
+  await Promise.all(beers.map(async beer => await Beer.create(beer)))
+  console.log(green("Seeding success!"))
   db.close();
 };
-
 seed().catch(err => {
   console.error(red("Oh noes! Something went wrong!"));
   console.error(err);
   db.close();
 });
-
-
-//make all inputs upper caps
-//welcome page should ask if your 21 or older to visit

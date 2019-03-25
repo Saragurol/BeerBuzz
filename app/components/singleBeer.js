@@ -1,7 +1,8 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {fetchOneBeer} from '../reducers/subBeerReducer'
+import {fetchOneBeer, putBeer} from '../reducers/subBeerReducer'
 import {Link} from 'react-router-dom'
+import PutBeer from './PutBeer'
 
 
 export class SingleBeer extends Component {
@@ -11,6 +12,7 @@ export class SingleBeer extends Component {
     }
     render(){
         const beer = this.props.beer
+        const updateBeer = this.props.updateBeer
 
         return (
             <div className="container">
@@ -35,6 +37,7 @@ export class SingleBeer extends Component {
                 </div>
                 </div>
             </div>
+            <PutBeer beerId={beer.id} updateBeer={updateBeer} />
             </div>
         )
     }
@@ -48,7 +51,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        fetchBeer: (beerId) => dispatch(fetchOneBeer(beerId))
+        fetchBeer: (beerId) => dispatch(fetchOneBeer(beerId)),
+        updateBeer: (beerId, beer) => dispatch(putBeer(beerId, beer))
     }
 }
 

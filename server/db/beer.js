@@ -13,17 +13,14 @@ const Beer = db.define('beer', {
     },
     imageUrl: {
       type: Sequelize.STRING,
-      defaultValue: 'https://dwa5x7aod66zk.cloudfront.net/assets/labtocat-be5eee0434960a8f73e54910df8e87b8a5a3b2d651c0b301670c04a9cc26a70f.png'
+      defaultValue: 'https://www.pngkey.com/png/detail/442-4423751_github-octocat-png-github-inspectocat-896-github-hack.png'
     },
     description: {
       type: Sequelize.TEXT
     },
     volume: {
-      type: Sequelize.DECIMAL,
-      allowNull: false,
-      validate: {
-        notEmpty: true
-      }
+      type: Sequelize.STRING,
+      allowNull: false
     }
   })
 

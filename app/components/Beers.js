@@ -14,6 +14,7 @@ export class AllBeers extends Component {
         const addBeer = this.props.addBeer
         return (
         <div id="beer-list">
+        <PostBeer addBeer={addBeer} />
             <div className="row">
             {
                 beers.map(beer =>
@@ -33,7 +34,6 @@ export class AllBeers extends Component {
                      </div>))
             }
             </div>
-            <PostBeer addBeer={addBeer} />
         </div>
     )}
 }

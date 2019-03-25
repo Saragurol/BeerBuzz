@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 
 export default class PutBrewery extends Component {
-    constructor(props){
-        super(props)
+    constructor(){
+        super()
         this.state = {
             name: '',
             // imageUrl: '',
@@ -18,7 +18,6 @@ export default class PutBrewery extends Component {
         this.props.updateBrewery(this.props.breweryId, this.state)
         this.setState({
             name: '',
-            // imageUrl: '',
             address: '',
             description: ''
         })
@@ -40,13 +39,6 @@ export default class PutBrewery extends Component {
                 name = "name"
                 value = {this.state.name}
                 onChange = {this.handleChange} />
-
-                {/* <label htmlFor= "imageUrl"> ImageUrl: </label>
-                <input
-                type= "text"
-                name = "imageUrl"
-                value = {this.state.imageUrl}
-                onChange = {this.handleChange} /> */}
 
                 <label htmlFor= "address"> Address: </label>
                 <input

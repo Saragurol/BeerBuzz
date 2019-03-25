@@ -68,6 +68,7 @@ export const deleteBrewery = (breweryId) => {
 export const postBrewery = (brewery) => {
     return async dispatch => {
         const response = await axios.post('/api/breweries', brewery)
+        console.log("REACHING SUB_REDUC_BREWERY")
         dispatch(addBrewery(response.data))
     }
 }

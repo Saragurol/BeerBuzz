@@ -3,20 +3,25 @@ import axios from 'axios'
 const GET_BEERS = 'GET_BEERS'
 const GET_ONE_BEER = 'GET_ONE_BEER'
 const ADD_BEER = 'ADD_BEER'
+const UPDATE_BEER = 'UPDATE_BEER'
 
-
-export const getBeers = (beers) => ({
+const getBeers = (beers) => ({
     type: GET_BEERS,
     beers
 })
 
-export const getOneBeer = (beer) => ({
+const getOneBeer = (beer) => ({
     type: GET_ONE_BEER,
     beer
 })
 
-export const addBeer = (beer) => ({
+const addBeer = (beer) => ({
     type: ADD_BEER,
+    beer
+})
+
+const updateBeer = (beer) => ({
+    type: UPDATE_BEER,
     beer
 })
 
@@ -35,12 +40,19 @@ export const fetchOneBeer = (beerId) => {
 }
 
 export const postBeer = (beer) => {
-    console.log("HITS SUBBEER ROUTE")
     return async dispatch => {
         const response = await axios.post('/api/beers', beer)
+        console.log('reaches beer_sub_reducer thunk')
+        console.log("reached route")
         dispatch(addBeer(response.data))
     }
+}
 
+export const putBeer = (beerId, beer) => {
+    return async dispatch => {
+        const response = await axios.put(`/api/beers/${beerId}`, beer)
+        dispatch(updateBeer(response.data))
+    }
 }
 
 const initialState = {
@@ -57,6 +69,8 @@ const beersubReducer = (state = initialState, action) => {
             return {...state, beer: action.beer, brewery: action.beer.brewery}
         case ADD_BEER:
             return {...state, beers: [...state.beers, action.beer]}
+        case UPDATE_BEER:
+            return {...state, beer: action.beer}
         default:
         return state
     }

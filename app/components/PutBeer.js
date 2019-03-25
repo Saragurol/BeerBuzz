@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 
-export default class PostBeer extends Component {
-    constructor(props){
-        super(props)
+export default class PutBeer extends Component {
+    constructor(){
+        super()
         this.state = {
             name: '',
             description: '',
@@ -13,7 +13,7 @@ export default class PostBeer extends Component {
     }
     handleSubmit (event){
         event.preventDefault()
-        this.props.addBeer(this.state)
+        this.props.updateBeer(this.props.beerId, this.state)
         this.setState({
             name: '',
             description: '',

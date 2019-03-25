@@ -5,9 +5,7 @@ const {Beer, Brewery} = require('../db')
 
 router.get('/beers', async (req, res, next) => {
   try {
-    const allBeers = await Beer.findAll({
-      include: [Brewery]
-    })
+    const allBeers = await Beer.findAll()
     res.json(allBeers)
   } catch (error) {
       next(error)
@@ -17,6 +15,7 @@ router.get('/beers', async (req, res, next) => {
 router.get('/beers/:id', async (req, res, next) => {
   try {
     const oneBeer = await Beer.findById(req.params.id, {include: [Brewery]})
+    // res.json(oneBeer)
     if (oneBeer){
       res.json(oneBeer)
     }
@@ -29,22 +28,15 @@ router.get('/beers/:id', async (req, res, next) => {
 })
 
 router.post('/beers',  async (req, res, next) => {
-  console.log("REACHES POST ROOUTE")
   try {
-    console.log("REACHES POST ROOUTE22222")
-      let newBody = req.body
-      if (newBody !== undefined){
-          const newBeers = await Beer.create(newBody)
-          res.json(newBeers)
-      }
-      else {
-          res.sendStatus(500)
-      }
+    const newBeer = await Beer.create(req.params)
+    res.json(newBeer)
     } catch (error) {
+      console.log("ERROR", error)
         next(error)
     }
 })
-//the res.status (500) isint necessary here bc in the middleware they are already saying that if there is an error send the 500 status. as long as we place everything in a try catch. this will be enough for this project. 
+
 router.delete('/beers/:id', async (req, res, next) => {
   try {
     await Beer.destroy({
@@ -52,7 +44,7 @@ router.delete('/beers/:id', async (req, res, next) => {
         id: req.params.id
       }
     })
-    res.sendStatus(204)
+    res.sendStatus(204).json({})
   } catch (error) {
     next(error)
   }
@@ -60,17 +52,17 @@ router.delete('/beers/:id', async (req, res, next) => {
 
 router.put('/beers/:id', async (req, res, next) => {
   try {
-    const findBeers = await Beer.findById(req.params.id)
-    if (findBeers){
-      const updatedBeers = await Beer.update(req.body, {
+    const findBeer = await Beer.findById(req.params.id)
+    if (findBeer){
+      const updatedBeer = await Beer.update(req.body, {
         where: {id: req.params.id},
         returning: true,
         plain: true
       })
-      res.json(updatedBeers)
+      res.json(updatedBeer[1])
     }
     else {
-      res.sendStatus(500)
+      res.sendStatus(500).json({})
     }
   } catch (error) {
     next(error)
@@ -103,7 +95,7 @@ router.get('/breweries/:id', async (req, res, next) => {
       res.json(BreweryById)
     }
     else {
-      res.sendStatus(404)
+      res.sendStatus(404).json({})
     }
   } catch (error) {
       next(error)
@@ -112,14 +104,15 @@ router.get('/breweries/:id', async (req, res, next) => {
 
 router.post('/breweries',  async (req, res, next) => {
   try {
-      let newBody = req.body
-      if (newBody !== undefined){
-          const newBrewery = await Brewery.create(newBody)
+      // let newBody = req.body
+      // if (newBody !== undefined){
+          const newBrewery = await Brewery.create(req.body)
+          console.log("REACHES SERVER SIDE BREWERY POST ROUTE")
           res.json(newBrewery)
-      }
-      else {
-          res.sendStatus(500)
-      }
+      // }
+      // else {
+      //     res.sendStatus(500).json({})
+      // }
     } catch (error) {
         next(error)
     }
@@ -132,7 +125,7 @@ router.delete('/breweries/:id', async (req, res, next) => {
         id: req.params.id
       }
     })
-    res.sendStatus(204)
+    res.sendStatus(204).json({})
   } catch (error) {
     next(error)
   }
@@ -150,7 +143,7 @@ router.put('/breweries/:id', async (req, res, next) => {
       res.json(updatedBrewery[1])
     }
     else {
-      res.sendStatus(500)
+      res.sendStatus(500).json({})
     }
   } catch (error) {
     next(error)
