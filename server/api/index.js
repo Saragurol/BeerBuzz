@@ -15,7 +15,6 @@ router.get('/beers', async (req, res, next) => {
 router.get('/beers/:id', async (req, res, next) => {
   try {
     const oneBeer = await Beer.findById(req.params.id, {include: [Brewery]})
-    // res.json(oneBeer)
     if (oneBeer){
       res.json(oneBeer)
     }
@@ -32,7 +31,6 @@ router.post('/beers',  async (req, res, next) => {
     const newBeer = await Beer.create(req.body)
     res.json(newBeer)
     } catch (error) {
-      console.log("ERROR", error)
         next(error)
     }
 })
@@ -104,15 +102,8 @@ router.get('/breweries/:id', async (req, res, next) => {
 
 router.post('/breweries',  async (req, res, next) => {
   try {
-      // let newBody = req.body
-      // if (newBody !== undefined){
-          const newBrewery = await Brewery.create(req.body)
-          console.log("REACHES SERVER SIDE BREWERY POST ROUTE")
-          res.json(newBrewery)
-      // }
-      // else {
-      //     res.sendStatus(500).json({})
-      // }
+    const newBrewery = await Brewery.create(req.body)
+    res.json(newBrewery)
     } catch (error) {
         next(error)
     }

@@ -1,5 +1,5 @@
-const { db, Brewery, Beer } = require("./server/db");
-const { green, red } = require("chalk");
+const { db, Brewery, Beer } = require('./server/db');
+const { green, red } = require('chalk');
 
 const seed = async () => {
   await db.sync({ force: true });
@@ -86,7 +86,7 @@ const seed = async () => {
     }
   ];
 
-  await Promise.all(beers.map(async beer => await Beer.create(beer)))
+  await Promise.all(beers.map(beer => Beer.create(beer)))
   console.log(green('Seeding success!'))
   db.close();
 };

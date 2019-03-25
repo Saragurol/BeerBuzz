@@ -4,7 +4,7 @@ import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import PostBeer from './PostBeer'
 
-export class AllBeers extends Component {    
+export class AllBeers extends Component {
     componentDidMount() {
         this.props.fetchInitialBeers()
     }
@@ -33,9 +33,7 @@ export class AllBeers extends Component {
                             <a className="waves-effect waves-light btn" onClick={() => removeBeer(beer.id)}><i className="material-icons right">delete</i>DELETE</a>
                             </div>
                         </div>
-                      
                         </div>
-                      
                      </div>))
             }
             </div>

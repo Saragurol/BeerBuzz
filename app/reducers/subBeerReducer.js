@@ -48,8 +48,6 @@ export const fetchOneBeer = (beerId) => {
 export const postBeer = (beer) => {
     return async dispatch => {
         const response = await axios.post('/api/beers', beer)
-        console.log('reaches beer_sub_reducer thunk')
-        console.log("reached route")
         dispatch(addBeer(response.data))
     }
 }
