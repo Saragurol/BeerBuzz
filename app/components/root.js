@@ -13,7 +13,7 @@ const Root = () => {
     <div>
       <Navbar />
       <main>
-        <h1>Beer Buzz</h1>
+        <h1>BeerBuzz</h1>
         <Route  exact path= "/" component={Breweries} />
         <Route  exact path= "/breweries" component={Breweries} />
         <Route  path= "/breweries/:id" component={SingleBrewery} />
@@ -38,3 +38,5 @@ const Root = () => {
 }
 
 export default Root
+
+//Switch from react-router-dom
